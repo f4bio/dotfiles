@@ -1,0 +1,5 @@
+[user]
+	email = iam@f4b.io
+	name = Fabio Tea
+[gitflow "branch"]
+	master = main
