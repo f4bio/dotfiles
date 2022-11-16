@@ -1,0 +1,18 @@
+sequence default {
+	uncgi;
+	iso8859_1 {
+		filename "~/.config/detox/iso8859_1.tbl";
+	};
+	# utf_8 {
+	#	 filename "unicode.tbl";
+	# };
+	safe;
+	lower;
+	wipeup {
+		remove_trailing;
+	};
+	# max_length {
+	#	 length 128;
+	# };
+};
+
