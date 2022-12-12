@@ -3,3 +3,5 @@
 	name = Fabio Tea
 [gitflow "branch"]
 	master = main
+[init]
+	defaultBranch = main
