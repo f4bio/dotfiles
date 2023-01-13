@@ -127,7 +127,13 @@ source "$HOME/.asdf/installs/rust/1.66.1/env"
 
 export GOPATH="$HOME/.go"
 export FLUTTER_ROOT="$(asdf where flutter)"
-export ANDROID_SDK_ROOT="$HOME/.android-sdk"
+export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export ANDROID_HOME="$ANDROID_SDK_ROOT"
 
-path+=("$HOME/.local/bin" "$GOPATH/bin" "$ANDROID_HOME/cmdline-tools/bin" "$ANDROID_HOME/platform-tools" "$FLUTTER_ROOT/bin")
+path+=(
+	"$HOME/.local/bin"
+	"$GOPATH/bin"
+	"$ANDROID_HOME/cmdline-tools/latest/bin"
+	"$ANDROID_HOME/platform-tools"
+	"$FLUTTER_ROOT/bin"
+)
