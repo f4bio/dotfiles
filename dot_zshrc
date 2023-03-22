@@ -72,6 +72,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+CODESTATS_API_KEY="SFMyNTY.WmpSaWFXOD0jI01UazJNakk9.loNL2ifhiuzJ_zN-vf9iT3GTe4TTeNo7tAWVrhX_rZ0"
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -81,6 +83,7 @@ plugins=(
 	git
 	dotenv
 	asdf
+	code-stats-zsh
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	pj
@@ -88,7 +91,7 @@ plugins=(
 	zsh-navigation-tools
 )
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # User configuration
 
@@ -123,11 +126,11 @@ PROJECT_PATHS=("$HOME/workspace")
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source "$HOME/.asdf/plugins/java/set-java-home.zsh"
-#source "$HOME/.asdf/installs/rust/1.66.1/env"
+source "$(asdf where rust)/env"
 
 export GOPATH="$HOME/.go"
 export FLUTTER_ROOT="$(asdf where flutter)"
-export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+export ANDROID_SDK_ROOT="$HOME/.android-sdk"
 export ANDROID_HOME="$ANDROID_SDK_ROOT"
 
 path+=(
