@@ -124,16 +124,17 @@ PROJECT_PATHS=("$HOME/workspace")
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source "$HOME/.asdf/plugins/java/set-java-home.zsh"
-#source "$(asdf where rust)/env"
 
 export GOPATH="$HOME/.go"
 export FLUTTER_ROOT="$(asdf where flutter)"
 export ANDROID_SDK_ROOT="/usr/lib/android-sdk"
 export ANDROID_HOME="$ANDROID_SDK_ROOT"
+export CARGO_HOME="$HOME/.cargo"
 
 path+=(
 	"$HOME/.local/bin"
 	"$GOPATH/bin"
+	"$CARGO_HOME/bin"
 	"$ANDROID_HOME/cmdline-tools/latest/bin"
 	"$ANDROID_HOME/platform-tools"
 	"$FLUTTER_ROOT/bin"
