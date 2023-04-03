@@ -1,8 +1,8 @@
 #!/bin/sh
 
-echo "\n\n## ####################"
+echo "\n## ####################"
 echo "## starting onchange install packages..."
-echo "## ################\n\n"
+echo "## ################\n"
 
 echo "\n## ####################"
 echo "## installing packages..."
@@ -20,26 +20,26 @@ echo "## install zsh plugins..."
 echo "## ################\n"
 git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+git clone https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 
 echo "\n## ####################"
 echo "## installing nerd fonts..."
 echo "## ################\n"
-LOCAL_FONTS="$HOME/.local/share/fonts"
-mkdir -p "$LOCAL_FONTS"
+mkdir -p "$HOME/.local/share/fonts"
 curl -fsSL -o "/tmp/Hack.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip"
 curl -fsSL -o "/tmp/FiraCode.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraCode.zip"
 unzip -qq -d /tmp/Hack /tmp/Hack.zip
 unzip -qq -d /tmp/FiraCode /tmp/FiraCode.zip
-cp "/tmp/Hack/Hack Regular Nerd Font Complete.ttf" "$LOCAL_FONTS/"
-cp "/tmp/Hack/Hack Regular Nerd Font Complete Mono.ttf" "$LOCAL_FONTS/"
-cp "/tmp/FiraCode/Fira Code Regular Nerd Font Complete.ttf" "$LOCAL_FONTS/"
-cp "/tmp/FiraCode/Fira Code Regular Nerd Font Complete Mono.ttf" "$LOCAL_FONTS/"
+cp "/tmp/Hack/Hack Regular Nerd Font Complete.ttf" "$HOME/.local/share/fonts/"
+cp "/tmp/Hack/Hack Regular Nerd Font Complete Mono.ttf" "$HOME/.local/share/fonts/"
+cp "/tmp/FiraCode/Fira Code Regular Nerd Font Complete.ttf" "$HOME/.local/share/fonts/"
+cp "/tmp/FiraCode/Fira Code Regular Nerd Font Complete Mono.ttf" "$HOME/.local/share/fonts/"
 fc-cache -f
 
 echo "\n## ####################"
 echo "## do something else..."
 echo "## ################\n"
 
-echo "\n\n## ####################"
+echo "\n## ####################"
 echo "## done onchange install packages..."
-echo "## ################\n\n"
+echo "## ################\n"
