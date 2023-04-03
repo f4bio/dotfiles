@@ -7,6 +7,10 @@ echo "install 3rd party packages/tools..."
 curl -fsSL -o "$HOME/.local/bin/agg" "https://github.com/asciinema/agg/releases/download/v1.4.0/agg-x86_64-unknown-linux-gnu"
 chmod +x "$HOME/.local/bin/agg"
 
+echo "install zsh plugins..."
+git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+
 echo "installing nerd fonts..."
 LOCAL_FONTS="$HOME/.local/share/fonts"
 mkdir -p "$LOCAL_FONTS"
