@@ -7,7 +7,7 @@
 # echo "\n## ####################"
 # echo "## installing packages..."
 # echo "## ################\n"
-sudo apt-get --quiet --yes install zip unzip rar unrar ripgrep asciinema tmux git curl
+sudo apt-get --quiet --yes install zip unzip rar unrar ripgrep asciinema tmux git curl neovim
 
 # echo "\n## ####################"
 # echo "## install 3rd party packages/tools..."
