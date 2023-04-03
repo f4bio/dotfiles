@@ -1,13 +1,23 @@
 #!/bin/sh
 
 echo "installing packages..."
-sudo apt-get --quiet --yes install ripgrep asciinema
+sudo apt-get --quiet --yes install zip unzip rar unrar ripgrep asciinema
+
+echo "install 3rd party packages/tools..."
+curl -fsSL -o "$HOME/.local/bin/agg" "https://github.com/asciinema/agg/releases/download/v1.4.0/agg-x86_64-unknown-linux-gnu"
+chmod +x "$HOME/.local/bin/agg"
 
 echo "installing nerd fonts..."
 LOCAL_FONTS="$HOME/.local/share/fonts"
 mkdir -p "$LOCAL_FONTS"
-curl -fsSL -o "$LOCAL_FONTS/Hack Regular Nerd Font Complete.ttf" "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete.ttf"
-curl -fsSL -o "$LOCAL_FONTS/Hack Regular Nerd Font Complete Mono.ttf" "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf"
+curl -fsSL -o "/tmp/Hack.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip"
+curl -fsSL -o "/tmp/FiraCode.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraCode.zip"
+unzip -qq -d /tmp/Hack /tmp/Hack.zip
+unzip -qq -d /tmp/FiraCode /tmp/FiraCode.zip
+cp "/tmp/Hack/Hack Regular Nerd Font Complete.ttf" "$LOCAL_FONTS/"
+cp "/tmp/Hack/Hack Regular Nerd Font Complete Mono.ttf" "$LOCAL_FONTS/"
+cp "/tmp/FiraCode/Fira Code Regular Nerd Font Complete.ttf" "$LOCAL_FONTS/"
+cp "/tmp/FiraCode/Fira Code Regular Nerd Font Complete Mono.ttf" "$LOCAL_FONTS/"
 fc-cache -f
 
 echo "do something else..."
