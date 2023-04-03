@@ -7,19 +7,20 @@ echo "## ################\n"
 echo "\n## ####################"
 echo "## installing packages..."
 echo "## ################\n"
-sudo apt-get --quiet --yes install zip unzip rar unrar ripgrep asciinema
+sudo apt-get --quiet --yes install zip unzip rar unrar ripgrep asciinema tmux git curl
 
 echo "\n## ####################"
 echo "## install 3rd party packages/tools..."
 echo "## ################\n"
 curl -fsSL -o "$HOME/.local/bin/agg" "https://github.com/asciinema/agg/releases/download/v1.4.0/agg-x86_64-unknown-linux-gnu"
 chmod +x "$HOME/.local/bin/agg"
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3
 
 echo "\n## ####################"
 echo "## install zsh plugins..."
 echo "## ################\n"
-git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 git clone https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 
 echo "\n## ####################"
@@ -28,8 +29,8 @@ echo "## ################\n"
 mkdir -p "$HOME/.local/share/fonts"
 curl -fsSL -o "/tmp/Hack.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip"
 curl -fsSL -o "/tmp/FiraCode.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraCode.zip"
-unzip -qq -d /tmp/Hack /tmp/Hack.zip
-unzip -qq -d /tmp/FiraCode /tmp/FiraCode.zip
+unzip -qq -o -d /tmp/Hack /tmp/Hack.zip
+unzip -qq -o -d /tmp/FiraCode /tmp/FiraCode.zip
 cp "/tmp/Hack/Hack Regular Nerd Font Complete.ttf" "$HOME/.local/share/fonts/"
 cp "/tmp/Hack/Hack Regular Nerd Font Complete Mono.ttf" "$HOME/.local/share/fonts/"
 cp "/tmp/FiraCode/Fira Code Regular Nerd Font Complete.ttf" "$HOME/.local/share/fonts/"
