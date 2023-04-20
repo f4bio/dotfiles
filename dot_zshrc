@@ -123,10 +123,7 @@ PROJECT_PATHS=("$HOME/workspace")
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source "$HOME/.asdf/plugins/java/set-java-home.zsh"
-
 export GOPATH="$HOME/.go"
-export FLUTTER_ROOT="$(asdf where flutter)"
 export ANDROID_SDK_ROOT="/usr/lib/android-sdk"
 export ANDROID_HOME="$ANDROID_SDK_ROOT"
 export CARGO_HOME="$HOME/.cargo"
@@ -137,5 +134,4 @@ path+=(
 	"$CARGO_HOME/bin"
 	"$ANDROID_HOME/cmdline-tools/latest/bin"
 	"$ANDROID_HOME/platform-tools"
-	"$FLUTTER_ROOT/bin"
 )
