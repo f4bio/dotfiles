@@ -1,7 +1,7 @@
 chezmoi 2.33.0
 java openjdk-20
 flutter 3.7.7-stable
-nodejs 19.8.1
+nodejs 20.0.0
 rust 1.68.0
 ruby 3.2.1
 golang 1.20.2
