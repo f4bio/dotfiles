@@ -21,9 +21,14 @@ sudo apt-get --quiet --yes install \
 if [ ! -d "$HOME/.asdf" ]; then
     git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf
 fi
+### asdf plugins
 asdf plugin-add java https://github.com/halcyon/asdf-java.git
+asdf plugin-add php https://github.com/asdf-community/asdf-php.git
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+### asdf install frameworks
 asdf install java openjdk-20
-asdf global java openjdk-20
+asdf install nodejs latest
+asdf install php latest
 
 ## oh-my-zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then    
@@ -32,7 +37,6 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
         "" \
         --unattended
 fi
-
 ### oh-my-zsh plugins...
 if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions \
