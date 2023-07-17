@@ -14,7 +14,8 @@ sudo apt-get --quiet --yes install \
     ripgrep \
     asciinema \
     neovim \
-    detox
+    detox \
+    fzf
 
 # 3rd party packages/tools
 ## asdf
