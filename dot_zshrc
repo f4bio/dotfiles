@@ -87,6 +87,7 @@ plugins=(
 	zsh-interactive-cd
 	zsh-navigation-tools
 	tmux
+	docker
 )
 
 source "$ZSH/oh-my-zsh.sh"
