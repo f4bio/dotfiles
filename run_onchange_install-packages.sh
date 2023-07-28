@@ -20,7 +20,7 @@ sudo apt-get --quiet --yes install \
 # 3rd party packages/tools
 ## asdf
 if [ ! -d "$HOME/.asdf" ]; then
-    git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf
+    git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf"
 fi
 ### asdf plugins
 asdf plugin-add java https://github.com/halcyon/asdf-java.git
@@ -39,6 +39,10 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
         --unattended
 fi
 ### oh-my-zsh plugins...
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/helpers" ]; then
+    git clone https://github.com/zpm-zsh/helpers.git \
+        "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/helpers"
+fi
 if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions \
         "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
@@ -51,6 +55,7 @@ if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
     git clone https://github.com/romkatv/powerlevel10k.git \
         "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 fi
+
 
 # nerd fonts
 if [ ! -d "$HOME/.local/share/fonts" ]; then
