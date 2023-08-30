@@ -65,9 +65,9 @@ if [ ! -d "$HOME/.local/share/fonts" ]; then
     curl -fsSL -o "/tmp/FiraCode.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/$NERD_FONTS_VERSION/FiraCode.zip"
     unzip -qq -o -d /tmp/Hack /tmp/Hack.zip
     unzip -qq -o -d /tmp/FiraCode /tmp/FiraCode.zip
-    cp "/tmp/Hack/Hack Regular Nerd Font Complete.ttf" "$HOME/.local/share/fonts/"
-    cp "/tmp/Hack/Hack Regular Nerd Font Complete Mono.ttf" "$HOME/.local/share/fonts/"
-    cp "/tmp/FiraCode/Fira Code Regular Nerd Font Complete.ttf" "$HOME/.local/share/fonts/"
-    cp "/tmp/FiraCode/Fira Code Regular Nerd Font Complete Mono.ttf" "$HOME/.local/share/fonts/"
+    cp "/tmp/Hack/HackNerdFont-Regular.ttf" "$HOME/.local/share/fonts/"
+    cp "/tmp/Hack/HackNerdFontMono-Regular.ttf" "$HOME/.local/share/fonts/"
+    cp "/tmp/FiraCode/FiraCodeNerdFont-Regular.ttf" "$HOME/.local/share/fonts/"
+    cp "/tmp/FiraCode/FiraCodeNerdFontMono-Regular.ttf" "$HOME/.local/share/fonts/"
     fc-cache -f
 fi
