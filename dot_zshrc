@@ -80,7 +80,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
 	helpers
 	git
-	dotenv
+	#dotenv
 	asdf
 	zsh-autosuggestions
 	zsh-syntax-highlighting
