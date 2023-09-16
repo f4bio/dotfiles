@@ -1,21 +1,40 @@
 #!/bin/sh
 
 # essential packages
-sudo apt-get --quiet --yes update
-sudo apt-get --quiet --yes install \
-    zip \
-    unzip \
-    rar \
-    unrar \
-    tmux \
-    zsh \
-    git \
-    curl \
-    ripgrep \
-    asciinema \
-    neovim \
-    detox \
-    fzf
+{{ if eq .chezmoi.osRelease.id "ubuntu" }}
+    # Ubuntu-specific code
+    sudo apt-get --quiet --yes update
+    sudo apt-get --quiet --yes install \
+        zip \
+        unzip \
+        rar \
+        unrar \
+        tmux \
+        zsh \
+        git \
+        curl \
+        ripgrep \
+        asciinema \
+        neovim \
+        detox \
+        fzf
+{{ else if eq .chezmoi.osRelease.id "nixos" }}
+    # NixOS-specific code
+    nix-shell -p \
+        zip \
+        unzip \
+        rar \
+        unrar \
+        tmux \
+        zsh \
+        git \
+        curl \
+        ripgrep \
+        asciinema \
+        neovim \
+        detox \
+        fzf
+{{   end }}
 
 # 3rd party packages/tools
 ## asdf
@@ -23,9 +42,15 @@ if [ ! -d "$HOME/.asdf" ]; then
     git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf"
 fi
 ### asdf plugins
-asdf plugin-add java https://github.com/halcyon/asdf-java.git
-asdf plugin-add php https://github.com/asdf-community/asdf-php.git
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+if [[ $(asdf plugin list | grep -w -q "php") -gt 0 ]]; then
+    asdf plugin-add php https://github.com/asdf-community/asdf-php.git
+fi
+if [[ $(asdf plugin list | grep -w -q "java") -gt 0 ]]; then
+    asdf plugin-add java https://github.com/halcyon/asdf-java.git
+fi
+if [[ $(asdf plugin list | grep -w -q "nodejs") -gt 0 ]]; then
+    asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+fi
 ### asdf install frameworks
 asdf install java openjdk-20
 asdf install nodejs latest
