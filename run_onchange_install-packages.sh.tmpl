@@ -40,52 +40,62 @@
 
 # 3rd party packages/tools
 ## asdf
-if [ ! -d "$HOME/.asdf" ]; then
+if [ ! -d "$HOME/.asdf" ]
+then
     git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf"
 fi
 ### asdf plugins
-if [ $(asdf plugin list | grep -w -q "php") -gt 0 ]; then
+if [ $(asdf plugin list | grep -w -q "php") -gt 0 ]
+then
     asdf plugin-add php https://github.com/asdf-community/asdf-php.git
 fi
-if [ $(asdf plugin list | grep -w -q "java") -gt 0 ]; then
+if [ $(asdf plugin list | grep -w -q "java") -gt 0 ]
+then
     asdf plugin-add java https://github.com/halcyon/asdf-java.git
 fi
-if [ $(asdf plugin list | grep -w -q "nodejs") -gt 0 ]; then
-    asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+if [ $(asdf plugin list | grep -w -q "nodejs") -gt 0 ]
+then
+    asdf plugin add nodejs
 fi
+
 ### asdf install frameworks
-asdf install java openjdk-20
+asdf install php latest
 asdf install nodejs latest
 asdf install php latest
 
 ## oh-my-zsh
-if [ ! -d "$HOME/.oh-my-zsh" ]; then    
+if [ ! -d "$HOME/.oh-my-zsh" ]
+then    
     sh -c \
         "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
         "" \
         --unattended
 fi
 ### oh-my-zsh plugins...
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/helpers" ]; then
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/helpers" ]
+then
     git clone https://github.com/zpm-zsh/helpers.git \
         "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/helpers"
 fi
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]
+then
     git clone https://github.com/zsh-users/zsh-autosuggestions \
         "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 fi
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]
+then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
         "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 fi
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]
+then
     git clone https://github.com/romkatv/powerlevel10k.git \
         "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 fi
 
-
 # nerd fonts
-if [ ! -d "$HOME/.local/share/fonts" ]; then
+if [ ! -d "$HOME/.local/share/fonts" ]
+then
     mkdir -p "$HOME/.local/share/fonts"
     NERD_FONTS_VERSION=$(curl -fsSL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | grep "tag_name" | cut -d\" -f4)
     curl -fsSL -o "/tmp/Hack.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/$NERD_FONTS_VERSION/Hack.zip"
