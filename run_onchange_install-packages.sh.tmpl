@@ -44,13 +44,13 @@ if [ ! -d "$HOME/.asdf" ]; then
     git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf"
 fi
 ### asdf plugins
-if [[ $(asdf plugin list | grep -w -q "php") -gt 0 ]]; then
+if [ $(asdf plugin list | grep -w -q "php") -gt 0 ]; then
     asdf plugin-add php https://github.com/asdf-community/asdf-php.git
 fi
-if [[ $(asdf plugin list | grep -w -q "java") -gt 0 ]]; then
+if [ $(asdf plugin list | grep -w -q "java") -gt 0 ]; then
     asdf plugin-add java https://github.com/halcyon/asdf-java.git
 fi
-if [[ $(asdf plugin list | grep -w -q "nodejs") -gt 0 ]]; then
+if [ $(asdf plugin list | grep -w -q "nodejs") -gt 0 ]; then
     asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 fi
 ### asdf install frameworks
