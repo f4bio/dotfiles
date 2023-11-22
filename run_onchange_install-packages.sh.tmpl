@@ -39,29 +39,11 @@
 {{ end }}
 
 # 3rd party packages/tools
-## asdf
-if [ ! -d "$HOME/.asdf" ]
-then
-    git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf"
-fi
-### asdf plugins
-if [ $(asdf plugin list | grep -w -q "php") -gt 0 ]
-then
-    asdf plugin-add php https://github.com/asdf-community/asdf-php.git
-fi
-if [ $(asdf plugin list | grep -w -q "java") -gt 0 ]
-then
-    asdf plugin-add java https://github.com/halcyon/asdf-java.git
-fi
-if [ $(asdf plugin list | grep -w -q "nodejs") -gt 0 ]
-then
-    asdf plugin add nodejs
-fi
+## asdf plugins
+asdf plugin add nodejs
 
-### asdf install frameworks
-asdf install php latest
+## asdf install frameworks
 asdf install nodejs latest
-asdf install php latest
 
 ## oh-my-zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]
