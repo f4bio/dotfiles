@@ -7,3 +7,8 @@ Host github.idleague
 	Hostname github.com
 	User git
 	IdentityFile ~/.ssh/id_ed25519-idleague
+# dvc account
+Host github.dvc
+        Hostname github.com
+        User git
+        IdentityFile ~/.ssh/id_ed25519-dvc
