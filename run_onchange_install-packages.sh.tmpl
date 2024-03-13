@@ -18,7 +18,8 @@
         neovim \
         detox \
         fzf \
-        fontconfig
+        fontconfig \
+        autojump
 {{ else if eq .chezmoi.osRelease.id "nixos" }}
     # NixOS-specific code
     nix-shell -p \
@@ -35,7 +36,8 @@
         neovim \
         detox \
         fzf \
-        fontconfig
+        fontconfig \
+        autojump
 {{ end }}
 
 # 3rd party packages/tools
@@ -53,12 +55,13 @@ then
         "" \
         --unattended
 fi
-### oh-my-zsh plugins...
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/helpers" ]
+### oh-my-zsh theme
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]
 then
-    git clone https://github.com/zpm-zsh/helpers.git \
-        "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/helpers"
+    git clone https://github.com/romkatv/powerlevel10k.git \
+        "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 fi
+### oh-my-zsh plugins
 if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]
 then
     git clone https://github.com/zsh-users/zsh-autosuggestions \
@@ -69,11 +72,12 @@ then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
         "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 fi
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]
+## zpm
+if [[ ! -f "$HOME/.zpm/zpm.zsh" ]]
 then
-    git clone https://github.com/romkatv/powerlevel10k.git \
-        "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+  git clone --recursive https://github.com/zpm-zsh/zpm "$HOME/.zpm"
 fi
+source "$HOME/.zpm/zpm.zsh"
 
 # nerd fonts
 if [ ! -d "$HOME/.local/share/fonts" ]
