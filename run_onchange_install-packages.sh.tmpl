@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # essential packages
-{{ if eq .chezmoi.osRelease.id "ubuntu" }}
+{{ if eq .chezmoi.os "ubuntu" }}
     # Ubuntu-specific code
     sudo apt-get --quiet --yes update
     sudo apt-get --quiet --yes install \
@@ -20,13 +20,30 @@
         fzf \
         fontconfig \
         autojump
-{{ else if eq .chezmoi.osRelease.id "nixos" }}
+{{ else if eq .chezmoi.os "nixos" }}
     # NixOS-specific code
     nix-shell -p \
         zip \
         unzip \
         rar \
         unrar \
+        tmux \
+        zsh \
+        git \
+        curl \
+        ripgrep \
+        asciinema \
+        neovim \
+        detox \
+        fzf \
+        fontconfig \
+        autojump
+{{ else if eq .chezmoi.os "darwin" }}
+    brew update
+    brew install \
+        zip \
+        unzip \
+        rar \
         tmux \
         zsh \
         git \
