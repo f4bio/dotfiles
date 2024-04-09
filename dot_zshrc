@@ -131,6 +131,7 @@ export GOPATH="$HOME/.go"
 export ANDROID_SDK_ROOT="$HOME/.sdks/android"
 export ANDROID_HOME="$ANDROID_SDK_ROOT"
 export CARGO_HOME="$HOME/.cargo"
+export FLUTTER_CACHE="$HOME/.pub-cache"
 
 path+=(
 	"$HOME/.local/bin"
@@ -138,5 +139,6 @@ path+=(
 	"$CARGO_HOME/bin"
 	"$ANDROID_HOME/cmdline-tools/latest/bin"
 	"$ANDROID_HOME/platform-tools"
+	"$FLUTTER_CACHE/bin"
 )
 
