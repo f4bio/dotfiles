@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # essential packages
 {{ if eq .chezmoi.os "ubuntu" }}
@@ -90,7 +90,7 @@ then
         "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 fi
 ## zpm
-if [[ ! -f "$HOME/.zpm/zpm.zsh" ]]
+if [ ! -f "$HOME/.zpm/zpm.zsh" ]
 then
   git clone --recursive https://github.com/zpm-zsh/zpm "$HOME/.zpm"
 fi
