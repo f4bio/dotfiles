@@ -94,7 +94,7 @@ if [ ! -f "$HOME/.zpm/zpm.zsh" ]
 then
   git clone --recursive https://github.com/zpm-zsh/zpm "$HOME/.zpm"
 fi
-zsh --exec "source \"$HOME/.zpm/zpm.zsh\""
+zsh -c "source \"$HOME/.zpm/zpm.zsh\""
 
 # nerd fonts
 if [ ! -d "$HOME/.local/share/fonts" ]
