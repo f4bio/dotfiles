@@ -1,3 +1,7 @@
+if [[ -o interactive ]]; then
+  fastfetch
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -80,23 +84,36 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
 	git
 	asdf
-	zsh-autosuggestions
-	zsh-syntax-highlighting
+	"zsh-autosuggestions"
+	"zsh-syntax-highlighting"
 	pj
-	zsh-interactive-cd
-	zsh-navigation-tools
+	"zsh-interactive-cd"
+	"zsh-navigation-tools"
 	tmux
 	docker
+        "docker-compose"
 	rust
 	aliases
 	autojump
 )
 
-source "$ZSH/oh-my-zsh.sh"
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
+#path=(
+#	$HOME/.asdf/bin
+#        $HOME/.asdf/shims
+#	/usr/local/sbin
+#	/usr/local/bin
+#	/usr/sbin
+#	/usr/bin
+#	/sbin
+#	/bin
+#	/usr/games
+#	/usr/local/games
+#)
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -122,23 +139,36 @@ export EDITOR="nvim"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias sail="./vendor/bin/sail"
 
-PROJECT_PATHS=("$HOME/workspace")
+PROJECT_PATHS=($HOME/development/workspace)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export GOPATH="$HOME/.go"
-export ANDROID_SDK_ROOT="$HOME/.sdks/android"
-export ANDROID_HOME="$ANDROID_SDK_ROOT"
-export CARGO_HOME="$HOME/.cargo"
-export PUB_CACHE="$HOME/.pub-cache"
+export ANDROID_SDK_ROOT=$HOME/development/Android/Sdk
+export ANDROID_HOME=$ANDROID_SDK_ROOT
+export PUB_CACHE=$HOME/development/pub/cache
+export FLUTTER_ROOT=$HOME/development/flutter
+export JAVA_HOME=/usr/lib/jvm/default-java
 
 path+=(
-	"$HOME/.local/bin"
-	"$GOPATH/bin"
-	"$CARGO_HOME/bin"
-	"$ANDROID_HOME/cmdline-tools/latest/bin"
-	"$ANDROID_HOME/platform-tools"
-	"$PUB_CACHE/bin"
+	/snap/bin
+	$HOME/.local/bin
+	$JAVA_HOME/bin
+	$CARGO_HOME/bin
+	$ANDROID_HOME/cmdline-tools/latest/bin
+	$ANDROID_HOME/platform-tools
+	$PUB_CACHE/bin
+	$FLUTTER_ROOT/bin
 )
 
+. $HOME/.asdf/plugins/golang/set-env.zsh
+
+if [ -e /home/us3r/.nix-profile/etc/profile.d/nix.sh ]; then . /home/us3r/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# pnpm
+export PNPM_HOME="/home/us3r/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
