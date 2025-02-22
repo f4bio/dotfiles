@@ -1,7 +1,27 @@
 #!/bin/bash
 
 # essential packages
-{{ if eq .chezmoi.os "ubuntu" }}
+{{ if eq .chezmoi.os "darwin" }}
+    # macOS-specific code
+    brew update
+    brew install \
+        zip \
+        unzip \
+        rar \
+        tmux \
+        zsh \
+        git \
+        curl \
+        ripgrep \
+        asciinema \
+        neovim \
+        detox \
+        fzf \
+        fontconfig \
+        autojump
+
+{{ else if eq .chezmoi.os "linux" }}
+{{   if eq .chezmoi.osRelease.id "ubuntu" }}
     # Ubuntu-specific code
     sudo apt-get --quiet --yes update
     sudo apt-get --quiet --yes install \
@@ -20,7 +40,8 @@
         fzf \
         fontconfig \
         autojump
-{{ else if eq .chezmoi.os "nixos" }}
+
+{{   else if eq .chezmoi.osRelease.id "nixos" }}
     # NixOS-specific code
     nix-shell -p \
         zip \
@@ -38,23 +59,8 @@
         fzf \
         fontconfig \
         autojump
-{{ else if eq .chezmoi.os "darwin" }}
-    brew update
-    brew install \
-        zip \
-        unzip \
-        rar \
-        tmux \
-        zsh \
-        git \
-        curl \
-        ripgrep \
-        asciinema \
-        neovim \
-        detox \
-        fzf \
-        fontconfig \
-        autojump
+
+{{   end }}
 {{ end }}
 
 # 3rd party packages/tools
