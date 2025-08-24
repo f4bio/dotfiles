@@ -164,11 +164,3 @@ path+=(
 . $HOME/.asdf/plugins/golang/set-env.zsh
 
 if [ -e /home/us3r/.nix-profile/etc/profile.d/nix.sh ]; then . /home/us3r/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-# pnpm
-export PNPM_HOME="/home/us3r/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
