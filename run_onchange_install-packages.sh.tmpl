@@ -59,8 +59,8 @@
         fontconfig \
         autojump
 {{   else if eq .chezmoi.osRelease.id "arch" }}
-# Arch-specific code
-    nix-shell -p \
+    # Arch-specific code
+    pacman -Sy \
         zip \
         unzip \
         rar \
