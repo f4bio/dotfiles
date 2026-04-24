@@ -90,12 +90,13 @@ plugins=(
 	"zsh-navigation-tools"
 	tmux
 	docker
-        "docker-compose"
+    "docker-compose"
 	rust
 	aliases
 	autojump
-	asdf
-        bun
+	thefuck
+    mise
+    thefuck
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -104,9 +105,6 @@ source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 path=(
-	$HOME/.asdf/bin
-        $HOME/.asdf/shims
-        $HOME/.bun/bin
 	/usr/local/sbin
 	/usr/local/bin
 	/usr/sbin
@@ -139,7 +137,6 @@ export EDITOR="nvim"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias sail="./vendor/bin/sail"
 
 PROJECT_PATHS=($HOME/development/workspace)
 
@@ -148,24 +145,12 @@ PROJECT_PATHS=($HOME/development/workspace)
 
 export ANDROID_SDK_ROOT=$HOME/development/Android/Sdk
 export ANDROID_HOME=$ANDROID_SDK_ROOT
-export PUB_CACHE=$HOME/development/pub/cache
-export FLUTTER_ROOT=$HOME/development/flutter
 export JAVA_HOME=/usr/lib/jvm/default-java
 
 path+=(
 	/snap/bin
 	$HOME/.local/bin
 	$JAVA_HOME/bin
-	$CARGO_HOME/bin
 	$ANDROID_HOME/cmdline-tools/latest/bin
 	$ANDROID_HOME/platform-tools
-	$PUB_CACHE/bin
-	$FLUTTER_ROOT/bin
 )
-
-# bun completions
-[ -s "/home/f4bio/.bun/_bun" ] && source "/home/f4bio/.bun/_bun"
-
-# bun
-#export BUN_INSTALL="$HOME/.bun"
-#export PATH="$BUN_INSTALL/bin:$PATH"
