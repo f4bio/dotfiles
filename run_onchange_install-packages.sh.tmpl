@@ -58,7 +58,7 @@
         fzf \
         fontconfig \
         autojump
-{{   else if eq .chezmoi.osRelease.id "arch" }}
+{{   else if eq .chezmoi.osRelease.idLike "arch" }}
     # Arch-specific code
     pacman -Sy \
         zip \
@@ -77,57 +77,52 @@
         fontconfig \
         autojump
 {{   end }}
+
+    # 3rd party packages/tools
+    
+    ## mise
+    if [ ! -x "$(command -v mise)" ]; then
+    	curl https://mise.run | sh
+    fi
+    ## oh-my-zsh
+    if [ ! -d "$HOME/.oh-my-zsh" ]; then    
+        sh -c \
+            "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+            "" \
+            --unattended
+    fi
+    ### oh-my-zsh theme
+    if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
+        git clone https://github.com/romkatv/powerlevel10k.git \
+            "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+    fi
+    ### oh-my-zsh plugins
+    if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
+        git clone https://github.com/zsh-users/zsh-autosuggestions \
+            "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+            "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+    fi
+    ## zpm
+    if [ ! -f "$HOME/.zpm/zpm.zsh" ]; then
+      git clone --recursive https://github.com/zpm-zsh/zpm "$HOME/.zpm"
+    fi
+    zsh -c "source \"$HOME/.zpm/zpm.zsh\""
+    
+    # nerd fonts
+    if [ ! -d "$HOME/.local/share/fonts" ]; then
+        mkdir -p "$HOME/.local/share/fonts"
+        NERD_FONTS_VERSION=$(curl -fsSL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | grep "tag_name" | cut -d\" -f4)
+        curl -fsSL -o "/tmp/Hack.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/$NERD_FONTS_VERSION/Hack.zip"
+        curl -fsSL -o "/tmp/FiraCode.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/$NERD_FONTS_VERSION/FiraCode.zip"
+        unzip -qq -o -d /tmp/Hack /tmp/Hack.zip
+        unzip -qq -o -d /tmp/FiraCode /tmp/FiraCode.zip
+        cp "/tmp/Hack/HackNerdFont-Regular.ttf" "$HOME/.local/share/fonts/"
+        cp "/tmp/Hack/HackNerdFontMono-Regular.ttf" "$HOME/.local/share/fonts/"
+        cp "/tmp/FiraCode/FiraCodeNerdFont-Regular.ttf" "$HOME/.local/share/fonts/"
+        cp "/tmp/FiraCode/FiraCodeNerdFontMono-Regular.ttf" "$HOME/.local/share/fonts/"
+        fc-cache -f
+    fi
 {{ end }}
-
-# 3rd party packages/tools
-
-## mise
-curl https://mise.run | sh
-
-## oh-my-zsh
-if [ ! -d "$HOME/.oh-my-zsh" ]
-then    
-    sh -c \
-        "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
-        "" \
-        --unattended
-fi
-### oh-my-zsh theme
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]
-then
-    git clone https://github.com/romkatv/powerlevel10k.git \
-        "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
-fi
-### oh-my-zsh plugins
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]
-then
-    git clone https://github.com/zsh-users/zsh-autosuggestions \
-        "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-fi
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]
-then
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-        "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-fi
-## zpm
-if [ ! -f "$HOME/.zpm/zpm.zsh" ]
-then
-  git clone --recursive https://github.com/zpm-zsh/zpm "$HOME/.zpm"
-fi
-zsh -c "source \"$HOME/.zpm/zpm.zsh\""
-
-# nerd fonts
-if [ ! -d "$HOME/.local/share/fonts" ]
-then
-    mkdir -p "$HOME/.local/share/fonts"
-    NERD_FONTS_VERSION=$(curl -fsSL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | grep "tag_name" | cut -d\" -f4)
-    curl -fsSL -o "/tmp/Hack.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/$NERD_FONTS_VERSION/Hack.zip"
-    curl -fsSL -o "/tmp/FiraCode.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/$NERD_FONTS_VERSION/FiraCode.zip"
-    unzip -qq -o -d /tmp/Hack /tmp/Hack.zip
-    unzip -qq -o -d /tmp/FiraCode /tmp/FiraCode.zip
-    cp "/tmp/Hack/HackNerdFont-Regular.ttf" "$HOME/.local/share/fonts/"
-    cp "/tmp/Hack/HackNerdFontMono-Regular.ttf" "$HOME/.local/share/fonts/"
-    cp "/tmp/FiraCode/FiraCodeNerdFont-Regular.ttf" "$HOME/.local/share/fonts/"
-    cp "/tmp/FiraCode/FiraCodeNerdFontMono-Regular.ttf" "$HOME/.local/share/fonts/"
-    fc-cache -f
-fi
