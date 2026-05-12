@@ -82,7 +82,7 @@
     
     ## mise
     if [ ! -x "$(command -v mise)" ]; then
-    	curl https://mise.run | sh
+    	sh -c "echo \"would run: curl https://mise.run | sh\""
     fi
     ## oh-my-zsh
     if [ ! -d "$HOME/.oh-my-zsh" ]; then    
